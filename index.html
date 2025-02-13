@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffebf0;
+            overflow: hidden;
+        }
+        .container {
+            margin-top: 100px;
+            position: relative;
+        }
+        .envelope {
+            width: 400px;
+            height: 250px;
+            background-color: #ff4d6d;
+            position: relative;
+            margin: 0 auto;
+            border-radius: 15px 15px 0 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .envelope::before {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-bottom: 120px solid #ff4d6d;
+            top: -120px;
+            left: 0;
+        }
+        .letter {
+            width: 360px;
+            height: 220px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateY(100px);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #ff4d6d;
+            transition: transform 1s;
+            visibility: hidden;
+        }
+        .buttons {
+            margin-top: 50px;
+            display: none;
+        }
+        button {
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            margin: 15px;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        #yes {
+            background-color: #ff4d6d;
+            color: white;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        #no {
+            background-color: #ccc;
+            color: black;
+            position: absolute;
+        }
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope" onclick="openEnvelope()">Ábreme</div>
+        <div class="letter" id="letter">¿Quieres ser mi Valentine? ❤️</div>
+    </div>
+    <div class="buttons" id="buttons">
+        <button id="yes" onclick="showMessage()">Sí</button>
+        <button id="no" onmouseover="moveButton()">No</button>
+    </div>
+    
+    <script>
+        function openEnvelope() {
+            let letter = document.getElementById("letter");
+            let buttons = document.getElementById("buttons");
+            letter.style.visibility = "visible";
+            letter.style.transform = "translate(-50%, -50%) translateY(-50px)";
+            setTimeout(() => {
+                buttons.style.display = "block";
+            }, 1000);
+        }
+        function showMessage() {
+            document.body.innerHTML = '<h1 style="font-size: 3em;">¡Ahora eres mi monkeyvalentine! ❤️😍</h1><img src="https://media.tenor.com/BR0KUEtBDhwAAAAM/blacrswan-monkey.gif" alt="Love" width="400">';
+        }
+        function moveButton() {
+            let button = document.getElementById("no");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            button.style.left = x + "px";
+            button.style.top = y + "px";
+        }
+    </script>
+</body>
+</html>
